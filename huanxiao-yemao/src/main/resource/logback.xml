@@ -1,0 +1,30 @@
+<configuration>
+	<contextName>huanxiao-yemao</contextName>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%level %logger{55} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>../logs/admin.log</File>
+		<encoder>
+			<pattern>%d{MMdd.HHmmss} [%-22t] %-5p L:%-3L %-22c{0} - %m%n</pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>../logs/admin.%d{yyyyMMddHH}.log</fileNamePattern>
+		</rollingPolicy>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>20MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>
+	<root level="info">
+		<appender-ref ref="console" />
+	</root>
+	<logger name="com.huanxiao.yemao" level="info">
+		<appender-ref ref="console" />
+	</logger>
+	<logger name="org.springframework.web.servlet" level="info">
+		<appender-ref ref="console" />
+	</logger>
+</configuration>
